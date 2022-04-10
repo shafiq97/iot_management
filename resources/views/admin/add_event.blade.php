@@ -65,13 +65,13 @@
                             <div class="row">
                                 <div class="col pr-1 pl-0">
                                     <label for="device_reading">Reading Id</label>
-                                    <input id="device_reading" type="number" class="form-control mb-3" name="device_reading">
+                                    <input id="reading_id" type="number" class="form-control mb-3" name="reading_id">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col pr-1 pl-0">
                                     <label for="device_status">Device Status Id</label>
-                                    <input id="device_status" type="text" class="form-control mb-3" name="device_status">
+                                    <input id="status_id" type="text" class="form-control mb-3" name="status_id">
                                 </div>
                             </div>
 

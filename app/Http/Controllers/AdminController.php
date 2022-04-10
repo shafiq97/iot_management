@@ -66,4 +66,8 @@ class AdminController extends Controller
         $user = DB::select('select * from users where id = "' . $id . '"');
         return view('admin.profile')->with('user', $user)->with('result', $result);
     }
+
+    public function temp(){
+        return view('admin.temp');
+    }
 }

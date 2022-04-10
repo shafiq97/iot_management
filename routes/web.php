@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DevicesController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,13 +41,19 @@ Route::post('admin/updateuserinfo', [AdminController::class, 'updateuserinfo']);
 Route::post('updateuserinfo', [UserController::class, 'updateuserinfo']);
 Route::post('admin/add', [DevicesController::class, 'add']);
 Route::post('admin/edit_device', [DevicesController::class, 'edit_device']);
+Route::post('admin/edit_event', [EventController::class, 'edit_event']);
 Route::get('admin/view_device/{id}', [DevicesController::class, 'edit_devices'])->name('updateDevice.admin');
+Route::get('admin/view_event/{id}', [EventController::class, 'edit_events'])->name('updateEvent.admin');
 Route::get('admin/view_devices', [DevicesController::class, 'view_devices']);
+Route::get('admin/view_events', [EventController::class, 'view_events']);
 Route::get('view_devices', [UserController::class, 'view_devices']);
-Route::post('admin/add_event', [DevicesController::class, 'addEvent']);
+Route::post('admin/add_event', [EventController::class, 'add_event']);
 Route::post('admin/device_search', [EventController::class, 'autocompleteSearch']);
 Route::get('admin/profile', [AdminController::class, 'viewProfile']);
 Route::get('profile', [UserController::class, 'viewProfile']);
+
+// Temp
+Route::get('admin/temp', [AdminController::class, 'temp']);
 
 Route::get('/', function () {
     return view('welcome');
