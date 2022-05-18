@@ -1,4 +1,22 @@
 @extends('user.layouts.app')
+<script>
+    function popup_modal(params) {
+        var btn = document.getElementById(params[0]);
+        modal = document.getElementById("myModal");
+
+        modal.style.display = "block";
+        modalMessage.value = params[0];
+        modalDeviceName.value = params[1];
+        modalDeviceType.value = params[2];
+        modalDeviceUnit.value = params[3];
+        modalDeviceReading.value = params[4];
+        modalDeviceLocation.value = params[5];
+        modalDeviceStatus.value = params[6];
+        modalDeviceHealth.value = params[7];
+        modalDeviceSubnet.value = params[8];
+        modalDeviceIP.value = params[9];
+    }
+</script>
 <!-- Main Content -->
 @section('content')
     <!-- Content Wrapper -->
@@ -29,6 +47,7 @@
                             <th>Device Location</th>
                             <th>Device Status</th>
                             <th>Device Health</th>
+                            <th>Device Health</th>
                             {{-- <th>Device Uptime</th> --}}
                             {{-- <th>Device IP</th> --}}
                             {{-- <th>Device Subnet</th> --}}
@@ -44,6 +63,21 @@
                                     <td>{{ $item->device_location }}</td>
                                     <td>{{ $item->device_status }}</td>
                                     <td>{{ $item->device_health }}</td>
+                                    <td>                                        <button data-id="{{ $item->device_id }}" class="btn btn-primary btn-sm btn-block"
+                                        id={{ 'device' . $item->device_id }} onclick="popup_modal([
+                                                        '{{ $item->device_id }}',
+                                                        '{{ $item->device_name }}',
+                                                        '{{ $item->device_type }}',
+                                                        '{{ $item->device_unit }}',
+                                                        '{{ $item->device_reading }}',
+                                                        '{{ $item->device_location }}',
+                                                        '{{ $item->device_status }}',
+                                                        '{{ $item->device_health }}',
+                                                        '{{ $item->device_subnet }}',
+                                                        '{{ $item->device_ip }}',
+                                                        ])">
+                                        View more
+                                    </button></td>
                                     {{-- <td>{{ $item->device_uptime }}</td> --}}
                                     {{-- <td>{{ $item->device_ip }}</td> --}}
                                     {{-- <td>{{ $item->device_subnet }}</td> --}}
@@ -209,4 +243,57 @@
 
         </div>
         <!-- End of Main Content -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="row">
+                    <label for="device_id">Device ID</label>
+                    <input id="device_id" type="text" class="form-control mb-3" name="device_id" readonly>
+
+                </div>
+                <div class="row">
+                    <label for="device_type">Device Type</label>
+                    <input id="device_type" type="text" class="form-control mb-3" name="device_type" readonly>
+                </div>
+
+                <div class="row">
+                    <label for="device_name">Device Name</label>
+                    <input id="device_name" type="text" class="form-control mb-3" name="device_name" readonly>
+                </div>
+
+                <div class="row">
+                    <label for="device_unit">Device Unit</label>
+                    <input id="device_unit" type="text" class="form-control mb-3" name="device_unit" readonly>
+                </div>
+
+                <div class="row">
+                    <label for="device_reading">Device Reading</label>
+                    <input id="device_reading" type="text" class="form-control mb-3" name="device_reading" readonly>
+                </div>
+
+                <div class="row">
+                    <label for="device_location">Device Location</label>
+                    <input id="device_location" type="text" class="form-control mb-3" name="device_location" readonly>
+                </div>
+
+                <div class="row">
+                    <label for="device_status">Device Status</label>
+                    <input id="device_status" type="text" class="form-control mb-3" name="device_status" readonly>
+                </div>
+
+                <div class="row">
+                    <label for="device_health">Device Health</label>
+                    <input id="device_health" type="text" class="form-control mb-3" name="device_health" readonly>
+                </div>
+                <div class="row">
+                    <label for="device_ip">Device IP</label>
+                    <input id="device_ip" type="text" class="form-control mb-3" name="device_ip" readonly>
+                </div>
+                <div class="row">
+                    <label for="device_subnet">Device Subnet</label>
+                    <input id="device_subnet" type="text" class="form-control mb-3" name="device_subnet" readonly>
+                </div>
+            </div>
+        </div>
     @endsection

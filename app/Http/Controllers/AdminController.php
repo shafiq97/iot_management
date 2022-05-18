@@ -42,9 +42,11 @@ class AdminController extends Controller
     {
         $id = $request->input('id');
         $name = $request->input('name');
-        var_dump($id);
+        $approval = $request->input('approval');
+        // var_dump($id);
         // $user = DB::select('select * from users where id = "'.$id.'"');
-        // return view("haha");
+        DB::update('update users set approved = ? where id = ?', [$approval, $id]);
+        return redirect()->route('updateUserApproval.user');
     }
 
     public function viewProfile()

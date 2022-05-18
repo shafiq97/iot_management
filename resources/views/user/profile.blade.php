@@ -28,7 +28,7 @@
                 <form action="{{ url('updateuserinfo') }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <label>Admin ID</label>
+                        <label>User ID</label>
                         <input type="text" name="id" class="form-control" value="{{ $user[0]->id }}" readonly>
                     </div>
                     <div class="form-group">

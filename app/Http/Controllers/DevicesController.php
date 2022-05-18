@@ -14,6 +14,90 @@ use Session;
 class DevicesController extends Controller
 {
     //
+
+    function deleteDeviceType(Request $request){
+
+        $id = $request->route('id');
+
+        $res=DB::delete('delete from device_type where device_type_id = ?', [$id]);
+
+        if($res){
+            return back()->with('success', 'Device Type ID ' . $request->route('id') . " deleted!");
+        }else{
+            echo 'haha' . $request->route('id');
+        }
+    }
+
+    function deleteDeviceUnit(Request $request){
+
+        $id = $request->route('id');
+
+        $res=DB::delete('delete from device_unit where id = ?', [$id]);
+
+        if($res){
+            return back()->with('success', 'Device Unit ID ' . $request->route('id') . " deleted!");
+        }else{
+            return back()->with('failed', 'something is wrong');
+        }
+    }
+
+    function addView()
+    {
+        $device_types = DB::select('select * from device_type');
+        $device_units = DB::select('select * from device_unit');
+        return view('admin.add_device')
+            ->with('device_types', $device_types)
+            ->with('device_units', $device_units);
+    }
+
+    function viewDeviceType()
+    {
+        $device_types = DB::select('select * from device_type');
+        return view('admin.device_type')->with('device_types', $device_types);
+    }
+
+    function viewDeviceUnit()
+    {
+        $device_units = DB::select('select * from device_unit');
+        return view('admin.device_units')->with('device_units', $device_units);
+    }
+
+    function addDeviceTypeView()
+    {
+        return view('admin.add_device_type');
+    }
+
+    function addDeviceUnit()
+    {
+        return view('admin.add_device_unit');
+    }
+
+    function addDeviceTypeAction(Request $request)
+    {
+        $query = DB::table('device_type')->insert([
+            "device_type" => $request->input('device_type'),
+        ]);
+
+        if ($query) {
+            return back()->with('success', 'Record has been successfully inserted');
+        } else {
+            return back()->with('fail', 'Something went wrong');
+        }
+    }
+
+    function addDeviceUnitAction(Request $request)
+    {
+        $query = DB::table('device_unit')->insert([
+            "device_unit" => $request->input('device_unit'),
+        ]);
+
+        if ($query) {
+            return back()->with('success', 'Record has been successfully inserted');
+        } else {
+            return back()->with('fail', 'Something went wrong');
+        }
+    }
+
     function view_devices()
     {
         $data = array(
@@ -64,7 +148,7 @@ class DevicesController extends Controller
         $storage = $factory->createStorage();
 
         $device = DB::select('select * from devices where id = "' . $id . '"');
-        $image = $storage->getBucket()->object("Images/".$device[0]->image);
+        $image = $storage->getBucket()->object("Images/" . $device[0]->image);
         return view('admin.view_device')->with('device', $device)->with('image', $image);
     }
 
@@ -87,6 +171,7 @@ class DevicesController extends Controller
             "user_id" => $request->input('user_id'),
             "device_name" => $request->input('device_name'),
             "image" => $request->file('device_image')->getClientOriginalName(),
+            "device_location" => $request->file('location_image')->getClientOriginalName(),
             "created_at" => date('Y-m-d'),
             "updated_at" => date('Y-m-d')
         ]);
@@ -96,14 +181,21 @@ class DevicesController extends Controller
             $factory = (new Factory)->withServiceAccount('../resources/credentials/iot-management-bfa20-firebase-adminsdk-xoj7c-d1ae8b662b.json');
             $storage = $factory->createStorage();
             $image = $request->file('device_image'); //image file from frontend
+            $location_image = $request->file('location_image'); //image file from frontend
 
-            $localfolder = public_path('firebase-temp-uploads') .'/';
+            $localfolder = public_path('firebase-temp-uploads') . '/';
+            $localfolder2 = public_path('firebase-temp-uploads') . '/';
             $extension = $image->getClientOriginalExtension();
             $file = $request->file('device_image')->getClientOriginalName();
+            $file2 = $request->file('location_image')->getClientOriginalName();
             $image->move($localfolder, $file);
-            $uploadedfile = fopen($localfolder.$file, 'r');
+            $location_image->move($localfolder2, $file2);
+            $uploadedfile = fopen($localfolder . $file, 'r');
+            $uploadedfile2 = fopen($localfolder2 . $file2, 'r');
             $firebase_storage_path = 'Images/';
+            $firebase_storage_path2 = 'Locations/';
             $storage->getBucket()->upload($uploadedfile, ['name' => $firebase_storage_path . $request->file('device_image')->getClientOriginalName()]);
+            $storage->getBucket()->upload($uploadedfile2, ['name' => $firebase_storage_path2 . $request->file('location_image')->getClientOriginalName()]);
             // unlink($localfolder . $file);
             return back()->with('success', 'Record has been successfully inserted');
         } else {

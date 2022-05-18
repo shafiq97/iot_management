@@ -1,7 +1,9 @@
 <script>
     $(document).ready(function() {
 
-        $('#userTable').DataTable();
+        $('#userTable').DataTable({
+            scrollX:true,
+        });
 
         $('#devicesTable thead tr')
             .clone(true)

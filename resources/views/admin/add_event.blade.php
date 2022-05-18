@@ -36,42 +36,42 @@
                             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                             <div class="row">
                                 <label for="install_date">Installation date</label>
-                                <input id="install_date" type="date" class="form-control mb-3" name="install_date">
+                                <input id="install_date" type="date" class="form-control mb-3" name="install_date" required>
                             </div>
                             <div class="row">
                                 <label for="install_time">Installation Time</label>
-                                <input id="install_time" type="time" class="form-control mb-3" name="install_time">
+                                <input id="install_time" type="time" class="form-control mb-3" name="install_time" required>
                             </div>
                             <div class="row">
                                 <div class="col pr-1 pl-0">
                                     <label for="pic_id">Person In Charge Id</label>
-                                    <input id="pic_id" type="text" class="form-control mb-3" name="pic_id">
+                                    <input id="pic_id" type="text" class="form-control mb-3" name="pic_id" required>
                                 </div>
                                 <div class="col p-0">
                                     <label for="pic_name">Person In Charge Name</label>
-                                    <input id="pic_name" type="text" class="form-control mb-3" name="pic_name">
+                                    <input id="pic_name" type="text" class="form-control mb-3" name="pic_name" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col pr-1 pl-0">
                                     <label for="device_id">Device Id</label>
-                                    <input id="device_id" type="text" class="form-control mb-3" name="device_id">
+                                    <input id="device_id" type="number" class="form-control mb-3" name="device_id" required>
                                 </div>
                                 <div class="col p-0">
                                     <label for="location_id">Location Id</label>
-                                    <input id="location_id" type="text" class="form-control mb-3" name="location_id">
+                                    <input id="location_id" type="text" class="form-control mb-3" name="location_id" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col pr-1 pl-0">
                                     <label for="device_reading">Reading Id</label>
-                                    <input id="reading_id" type="number" class="form-control mb-3" name="reading_id">
+                                    <input id="reading_id" type="number" class="form-control mb-3" name="reading_id" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col pr-1 pl-0">
                                     <label for="device_status">Device Status Id</label>
-                                    <input id="status_id" type="text" class="form-control mb-3" name="status_id">
+                                    <input id="status_id" type="text" class="form-control mb-3" name="status_id" required>
                                 </div>
                             </div>
 

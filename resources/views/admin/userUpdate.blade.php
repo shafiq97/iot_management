@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Approval">Approval</label>
-                                    <select class="form-control" aria-label="Default select example">
+                                    <select class="form-control" aria-label="Default select example" name="approval">
                                         <option selected>{{ $user[0]->approved }}</option>
                                         @if ($user[0]->approved === "no")
                                             <option value="yes">yes</option>

@@ -41,6 +41,13 @@
                 <a class="collapse-item" href="{{ url('admin/user') }}">User</a>
             </div>
         </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Dropdown Configs:</h6>
+                <a class="collapse-item" href="{{ url('admin/device_type') }}">Device Type</a>
+                <a class="collapse-item" href="{{ url('admin/device_units') }}">Device Unit</a>
+            </div>
+        </div>
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->

@@ -24,9 +24,13 @@ Route::get('user', [UserController::class, 'index']);
 
 Route::get('admin/dashboard', [AdminController::class, 'index']);
 
-Route::get('admin/add_device', function () {
-    return view('admin.add_device');
-});
+// Route::get('admin/add_device', function () {
+//     return view('admin.add_device');
+// });
+
+Route::get('admin/add_device', [DevicesController::class, 'addView']);
+
+
 Route::get('admin/add_event', function () {
     return view('admin.add_event');
 });
@@ -50,7 +54,17 @@ Route::get('view_devices', [UserController::class, 'view_devices']);
 Route::post('admin/add_event', [EventController::class, 'add_event']);
 Route::post('admin/device_search', [EventController::class, 'autocompleteSearch']);
 Route::get('admin/profile', [AdminController::class, 'viewProfile']);
+Route::get('admin/device_type', [DevicesController::class, 'viewDeviceType']);
+Route::get('admin/add_device_type', [DevicesController::class, 'addDeviceTypeView']);
+Route::post('admin/add_device_type_action', [DevicesController::class, 'addDeviceTypeAction']);
+Route::get('admin/delete_device_type/{id}', [DevicesController::class, 'deleteDeviceType']);
+Route::get('admin/delete_device_unit/{id}', [DevicesController::class, 'deleteDeviceUnit']);
+Route::get('admin/device_unit', [DevicesController::class, 'addDeviceUnit']);
+Route::get('admin/device_units', [DevicesController::class, 'ViewDeviceUnit']);
+Route::post('admin/device_unit', [DevicesController::class, 'addDeviceUnitAction']);
 Route::get('profile', [UserController::class, 'viewProfile']);
+
+
 
 // Temp
 Route::get('admin/temp', [AdminController::class, 'temp']);

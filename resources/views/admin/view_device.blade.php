@@ -46,12 +46,24 @@
                                         value="{{ $device[0]->device_name }}">
                                 </div>
                                 <div class="row">
-                                    <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png" id="marker" style="display: none; position: absolute; height: 3%;" />
+                                    {{-- <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png" id="marker" style="display: none; position: absolute; height: 3%;" /> --}}
                                     <label for="device_name">Image</label>
-                                    <img id="location" src="{{ URL::to('/') }}/firebase-temp-uploads/{{ $device[0]->image }}"
-                                        alt="">
                                     {{-- <input id="device_image" type="text" class="form-control mb-3" name="device_image"
                                         value="{{ $device[0]->image }}"> --}}
+                                </div>
+                                <div class="row">
+                                    <img id="location" src="{{ URL::to('/') }}/firebase-temp-uploads/{{ $device[0]->image }}"
+                                        alt="">
+                                </div>
+                                <div class="row">
+                                    {{-- <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png" id="marker" style="display: none; position: absolute; height: 3%;" /> --}}
+                                    <label for="device_name">Device Location</label>
+                                    {{-- <input id="device_image" type="text" class="form-control mb-3" name="device_image"
+                                        value="{{ $device[0]->image }}"> --}}
+                                </div>
+                                <div class="row">
+                                    <img id="location" src="{{ URL::to('/') }}/firebase-temp-uploads/{{ $device[0]->device_location }}"
+                                        alt="">
                                 </div>
                                 <div class="row mt-5">
                                     <div class="col pr-1 pl-0">
