@@ -9,7 +9,7 @@
             <div class="container-fluid">
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Edit Device</h1>
+                    <h1 class="h3 mb-0 text-gray-800">Edit Event</h1>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                 </div>
@@ -64,13 +64,13 @@
                                             value="{{ $event[0]->device_id }}">
                                     </div>
                                 </div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col pr-1 pl-0">
                                         <label for="device_subnet">Status Id</label>
                                         <input id="device_subnet" type="text" class="form-control mb-3" name="status_id"
                                             value="{{ $event[0]->status_id }}">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row">
                                     <div class="col pr-1 pl-0">
                                         <label for="device_subnet">Location Id</label>
@@ -78,13 +78,13 @@
                                             value="{{ $event[0]->location_id }}">
                                     </div>
                                 </div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col pr-1 pl-0">
                                         <label for="device_subnet">Reading Id</label>
                                         <input id="device_subnet" type="text" class="form-control mb-3" name="reading_id"
                                             value="{{ $event[0]->reading_id }}">
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="row">
                                     <button onclick="return confirm('Are you sure you want to update the event?')"

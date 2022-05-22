@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\DB;
 class EventController extends Controller
 {
     //
+
+    public function addEventView(){
+
+        $data= array(
+            'list' => DB::table('devices')->get()
+        );
+        return view('admin.add_event')->with($data);
+    }
+
     public function autocompleteSearch(Request $request)
     {
         $query = $request->get('query');

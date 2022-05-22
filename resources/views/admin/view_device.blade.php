@@ -62,7 +62,7 @@
                                         value="{{ $device[0]->image }}"> --}}
                                 </div>
                                 <div class="row">
-                                    <img id="location" src="{{ URL::to('/') }}/firebase-temp-uploads/{{ $device[0]->device_location }}"
+                                    <img id="location" src="{{ URL::to('/') }}/firebase-temp-uploads/location/{{ $device[0]->device_location }}"
                                         alt="">
                                 </div>
                                 <div class="row mt-5">
@@ -74,7 +74,7 @@
                                     <div class="col p-0">
                                         <label for="device_uptime">Device Initial Uptime</label>
                                         <input id="device_uptime" type="text" class="form-control mb-3" name="device_uptime"
-                                            value="{{ $device[0]->device_uptime }}">
+                                            value="{{ $device[0]->device_uptime }}" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -93,7 +93,7 @@
                                     <div class="col pr-1 pl-0">
                                         <label for="device_reading">Device Initial Reading</label>
                                         <input id="device_reading" type="number" class="form-control mb-3"
-                                            name="device_reading" value="{{ $device[0]->device_reading }}">
+                                            name="device_reading" value="{{ $device[0]->device_reading }}" required>
                                     </div>
                                     <div class="col p-0">
                                         <label for="device_unit">Device Unit</label>
@@ -126,12 +126,12 @@
                                     </div>
                                     <div class="col pr-1 pl-0">
                                         <label for="window_id">Window Id</label>
-                                        <input id="window_id" type="number" class="form-control mb-3" name="window_id"
+                                        <input id="window_id" type="text" class="form-control mb-3" name="window_id"
                                             value="{{ $device[0]->window_id }}">
                                     </div>
                                     <div class="col p-0">
                                         <label for="door_id">Door Id</label>
-                                        <input id="door_id" type="number" class="form-control mb-3" name="door_id"
+                                        <input id="door_id" type="text" class="form-control mb-3" name="door_id"
                                             value="{{ $device[0]->door_id }}">
                                     </div>
                                 </div>

@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="table table-hover">
-                    <table id="devicesTable" class="table">
+                    <table id="devicesType" class="table">
                         <thead>
                             <th>Device Type ID</th>
                             <th>Device Type</th>

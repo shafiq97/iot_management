@@ -55,17 +55,23 @@
                             <div class="row">
                                 <div class="col pr-1 pl-0">
                                     <label for="device_id">Device Id</label>
-                                    <input id="device_id" type="number" class="form-control mb-3" name="device_id" required>
+                                    {{-- <input id="device_id" type="number" class="form-control mb-3" name="device_id" required> --}}
+                                    <select name="device_id" id="" class="form-control mb-3" required>
+                                        @foreach ($list as $item)
+                                            <option value="{{ $item->device_id }}">
+                                                {{ $item->device_id }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col p-0">
                                     <label for="location_id">Location Id</label>
                                     <input id="location_id" type="text" class="form-control mb-3" name="location_id" required>
                                 </div>
                             </div>
-                            <div class="row">
+                            {{-- <div class="row">
                                 <div class="col pr-1 pl-0">
                                     <label for="device_reading">Reading Id</label>
-                                    <input id="reading_id" type="number" class="form-control mb-3" name="reading_id" required>
+                                    <input id="reading_id" type="text" class="form-control mb-3" name="reading_id" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -73,7 +79,7 @@
                                     <label for="device_status">Device Status Id</label>
                                     <input id="status_id" type="text" class="form-control mb-3" name="status_id" required>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="row">
                                 <button class="btn btn-primary btn-block">Submit</button>

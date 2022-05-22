@@ -46,6 +46,7 @@
                 <h6 class="collapse-header">Dropdown Configs:</h6>
                 <a class="collapse-item" href="{{ url('admin/device_type') }}">Device Type</a>
                 <a class="collapse-item" href="{{ url('admin/device_units') }}">Device Unit</a>
+                <a class="collapse-item" href="{{ url('admin/device_healths') }}">Device Health</a>
             </div>
         </div>
     </li>

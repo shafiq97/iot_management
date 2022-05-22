@@ -23,6 +23,7 @@
     {{-- DataTables --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/datatables.min.css') }}" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 
 
 
@@ -107,7 +108,14 @@
     {{-- <script src="{{ asset('admin/vendor/jquery/jquery.min.js') }}"></script> --}}
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
     <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
 
     {{-- DataTables --}}
     {{-- <script src="{{ asset('DataTables/datatables.min.js') }}"></script> --}}
@@ -141,13 +149,27 @@
                 }
             }
 
+            $('#devicesUnit').DataTable();
+            $('#userTable').DataTable();
+            $('#devicesType').DataTable();
+
             $('#devicesTable thead tr')
                 .clone(true)
                 .addClass('filters')
                 .appendTo('#devicesTable thead');
 
-            $('#devicesTable').DataTable({
+
+            var table = $('#devicesTable').DataTable({
+                scrollY: true,
                 scrollX: true,
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'pdf',
+                        text: 'Generate Report',
+                    },
+                    'colvis',
+                    'csv',
+                ],
                 orderCellsTop: true,
                 fixedHeader: true,
                 initComplete: function() {
@@ -202,6 +224,10 @@
 
             });
 
+            table.column(8).visible(false);
+
+
+
             var route = "{{ url('admin/device_search') }}";
             // alert(route);
             $('#device_id').typeahead({
@@ -227,6 +253,7 @@
             modalDeviceHealth = document.getElementById('device_health');
             modalDeviceIP = document.getElementById('device_ip');
             modalDeviceSubnet = document.getElementById('device_subnet');
+            modalDeviceImage = document.getElementById('image');
             // alert(modalDeviceStatus)
         }
     </script>

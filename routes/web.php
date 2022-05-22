@@ -29,11 +29,8 @@ Route::get('admin/dashboard', [AdminController::class, 'index']);
 // });
 
 Route::get('admin/add_device', [DevicesController::class, 'addView']);
+Route::get('admin/add_event', [EventController::class, 'addEventView']);
 
-
-Route::get('admin/add_event', function () {
-    return view('admin.add_event');
-});
 // Route::get('admin/user', function () {
 //     return view('admin.user');
 // });
@@ -59,9 +56,14 @@ Route::get('admin/add_device_type', [DevicesController::class, 'addDeviceTypeVie
 Route::post('admin/add_device_type_action', [DevicesController::class, 'addDeviceTypeAction']);
 Route::get('admin/delete_device_type/{id}', [DevicesController::class, 'deleteDeviceType']);
 Route::get('admin/delete_device_unit/{id}', [DevicesController::class, 'deleteDeviceUnit']);
+Route::get('admin/delete_device_health/{id}', [DevicesController::class, 'deleteDeviceHealth']);
 Route::get('admin/device_unit', [DevicesController::class, 'addDeviceUnit']);
 Route::get('admin/device_units', [DevicesController::class, 'ViewDeviceUnit']);
 Route::post('admin/device_unit', [DevicesController::class, 'addDeviceUnitAction']);
+Route::get('admin/device_healths', [DevicesController::class, 'deviceHealthView']);
+Route::post('admin/device_healths', [DevicesController::class, 'addDeviceHealthAction']);
+Route::get('admin/device_health', [DevicesController::class, 'addDeviceHealth']);
+Route::get('admin/archive/{id}', [DevicesController::class, 'archiveDeviceAction']);
 Route::get('profile', [UserController::class, 'viewProfile']);
 
 

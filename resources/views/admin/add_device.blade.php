@@ -107,7 +107,7 @@
                                 <div class="row">
                                     <div class="col pr-1 pl-0">
                                         <label for="device_reading">Device Initial Reading</label>
-                                        <input id="device_reading" type="number" class="form-control mb-3"
+                                        <input id="device_reading" type="text" class="form-control mb-3"
                                             name="device_reading" required>
                                     </div>
                                     <div class="col p-0">
@@ -129,8 +129,14 @@
                                     </div>
                                     <div class="col p-0">
                                         <label for="device_health">Device Health</label>
-                                        <input id="device_health" type="text" class="form-control mb-3" name="device_health"
-                                            required>
+                                        {{-- <input id="device_health" type="text" class="form-control mb-3" name="device_health"
+                                            required> --}}
+                                        <select name="device_health" id="device_health" class="form-control mb-3">
+                                            @foreach ($device_healths as $device_health)
+                                                <option value="{{ $device_health->health }}">
+                                                    {{ $device_health->health }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -146,12 +152,12 @@
                                     </div>
                                     <div class="col pr-1 pl-0">
                                         <label for="window_id">Window Id</label>
-                                        <input id="window_id" type="number" class="form-control mb-3" name="window_id"
+                                        <input id="window_id" type="text" class="form-control mb-3" name="window_id"
                                             required>
                                     </div>
                                     <div class="col p-0">
                                         <label for="door_id">Door Id</label>
-                                        <input id="door_id" type="number" class="form-control mb-3" name="door_id" required>
+                                        <input id="door_id" type="text" class="form-control mb-3" name="door_id" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -346,8 +352,8 @@
                         console.log("done ... ");
                         theCanvas = canvas;
                         canvas.toBlob(function(blob) {
-                                saveAs(blob, "location.png");
-                            });
+                            saveAs(blob, "location.png");
+                        });
                     });
 
                     // html2canvas($("#zoom-marker-img"), {

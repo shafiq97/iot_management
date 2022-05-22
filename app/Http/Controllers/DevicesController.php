@@ -15,6 +15,44 @@ class DevicesController extends Controller
 {
     //
 
+    function deviceHealthView()
+    {
+        $device_healths = DB::select('select * from device_health');
+        return view('admin.device_healths')->with('device_healths', $device_healths);
+    }
+
+
+
+    function addDeviceHealthAction(Request $request)
+    {
+        $query = DB::table('device_health')->insert([
+            "health" => $request->input('device_health'),
+        ]);
+
+        if ($query) {
+            return back()->with('success', 'Record has been successfully inserted');
+        } else {
+            return back()->with('fail', 'Something went wrong');
+        }
+    }
+
+    function addDeviceHealth()
+    {
+        return view('admin.add_device_health');
+    }
+
+    function archiveDeviceAction(Request $request){
+        $id = $request->route('id');
+
+        $res=DB::update("UPDATE devices SET archive = '1' WHERE device_id = ?;", [$id]);
+
+        if($res){
+            return back()->with('success', 'Device Type ID ' . $request->route('id') . " deleted!");
+        }else{
+            echo 'haha' . $request->route('id');
+        }
+    }
+
     function deleteDeviceType(Request $request){
 
         $id = $request->route('id');
@@ -41,13 +79,28 @@ class DevicesController extends Controller
         }
     }
 
+    function deleteDeviceHealth(Request $request){
+
+        $id = $request->route('id');
+
+        $res=DB::delete('delete from device_health where id = ?', [$id]);
+
+        if($res){
+            return back()->with('success', 'Device Health ID ' . $request->route('id') . " deleted!");
+        }else{
+            return back()->with('failed', 'something is wrong');
+        }
+    }
+
     function addView()
     {
         $device_types = DB::select('select * from device_type');
         $device_units = DB::select('select * from device_unit');
+        $device_healths = DB::select('select * from device_health');
         return view('admin.add_device')
             ->with('device_types', $device_types)
-            ->with('device_units', $device_units);
+            ->with('device_units', $device_units)
+            ->with('device_healths', $device_healths);
     }
 
     function viewDeviceType()
@@ -101,7 +154,7 @@ class DevicesController extends Controller
     function view_devices()
     {
         $data = array(
-            'list' => DB::table('devices')->get()
+            'list' => DB::select('select * from event inner join devices on event.device_id = devices.device_id where archive = 0')
         );
 
         return view('admin.view_devices', $data);
@@ -143,11 +196,10 @@ class DevicesController extends Controller
     function edit_devices(Request $request)
     {
         $id = $request->route('id');
-
         $factory = (new Factory)->withServiceAccount('../resources/credentials/iot-management-bfa20-firebase-adminsdk-xoj7c-d1ae8b662b.json');
         $storage = $factory->createStorage();
 
-        $device = DB::select('select * from devices where id = "' . $id . '"');
+        $device = DB::select('select * from devices where device_id = "' . $id . '"');
         $image = $storage->getBucket()->object("Images/" . $device[0]->image);
         return view('admin.view_device')->with('device', $device)->with('image', $image);
     }
@@ -184,7 +236,7 @@ class DevicesController extends Controller
             $location_image = $request->file('location_image'); //image file from frontend
 
             $localfolder = public_path('firebase-temp-uploads') . '/';
-            $localfolder2 = public_path('firebase-temp-uploads') . '/';
+            $localfolder2 = public_path('firebase-temp-uploads') . '/location/';
             $extension = $image->getClientOriginalExtension();
             $file = $request->file('device_image')->getClientOriginalName();
             $file2 = $request->file('location_image')->getClientOriginalName();

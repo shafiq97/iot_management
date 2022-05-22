@@ -10,8 +10,8 @@
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
             </div>
             <!-- Content Row -->
             <div class="row">
@@ -140,7 +140,7 @@
                         <!-- Card Header - Dropdown -->
                         <div
                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Sensor Health</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Device Status</h6>
                             <div class="dropdown no-arrow">
                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -163,14 +163,14 @@
                             </div>
                             <div class="mt-4 text-center small">
                                 <span class="mr-2">
-                                    <i class="fas fa-circle text-primary"></i> Direct
+                                    <i class="fas fa-circle text-primary"></i> Online
                                 </span>
                                 <span class="mr-2">
-                                    <i class="fas fa-circle text-success"></i> Social
+                                    <i class="fas fa-circle text-success"></i> Offline
                                 </span>
-                                <span class="mr-2">
-                                    <i class="fas fa-circle text-info"></i> Referral
-                                </span>
+                                {{-- <span class="mr-2">
+                                    <i class="fas fa-circle text-info"></i> Response Time
+                                </span> --}}
                             </div>
                         </div>
                     </div>

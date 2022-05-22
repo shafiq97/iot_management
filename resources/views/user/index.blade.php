@@ -10,11 +10,14 @@
         modalDeviceType.value = params[2];
         modalDeviceUnit.value = params[3];
         modalDeviceReading.value = params[4];
-        modalDeviceLocation.value = params[5];
+        modalDeviceLocation.src = "{{ URL::to('/') }}/firebase-temp-uploads/location/" + params[5];
         modalDeviceStatus.value = params[6];
         modalDeviceHealth.value = params[7];
         modalDeviceSubnet.value = params[8];
         modalDeviceIP.value = params[9];
+        modalImage.src = "{{ URL::to('/') }}/firebase-temp-uploads/" + params[10];
+
+        console.log('params 10' + params[10]);
     }
 </script>
 <!-- Main Content -->
@@ -28,8 +31,8 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
                 </div>
 
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -37,7 +40,7 @@
                 </div>
 
                 <div class="table table-hover">
-                    <table id="devicesTable" class="table">
+                    <table id="usersTable" class="table">
                         <thead>
                             <th>Device ID</th>
                             <th>Device Name</th>
@@ -63,21 +66,22 @@
                                     <td>{{ $item->device_location }}</td>
                                     <td>{{ $item->device_status }}</td>
                                     <td>{{ $item->device_health }}</td>
-                                    <td>                                        <button data-id="{{ $item->device_id }}" class="btn btn-primary btn-sm btn-block"
-                                        id={{ 'device' . $item->device_id }} onclick="popup_modal([
-                                                        '{{ $item->device_id }}',
-                                                        '{{ $item->device_name }}',
-                                                        '{{ $item->device_type }}',
-                                                        '{{ $item->device_unit }}',
-                                                        '{{ $item->device_reading }}',
-                                                        '{{ $item->device_location }}',
-                                                        '{{ $item->device_status }}',
-                                                        '{{ $item->device_health }}',
-                                                        '{{ $item->device_subnet }}',
-                                                        '{{ $item->device_ip }}',
-                                                        ])">
-                                        View more
-                                    </button></td>
+                                    <td> <button data-id="{{ $item->device_id }}" class="btn btn-primary btn-sm btn-block"
+                                            id={{ 'device' . $item->device_id }} onclick="popup_modal([
+                                                            '{{ $item->device_id }}',
+                                                            '{{ $item->device_name }}',
+                                                            '{{ $item->device_type }}',
+                                                            '{{ $item->device_unit }}',
+                                                            '{{ $item->device_reading }}',
+                                                            '{{ $item->device_location }}',
+                                                            '{{ $item->device_status }}',
+                                                            '{{ $item->device_health }}',
+                                                            '{{ $item->device_subnet }}',
+                                                            '{{ $item->device_ip }}',
+                                                            '{{ $item->image }}',
+                                                            ])">
+                                            View more
+                                        </button></td>
                                     {{-- <td>{{ $item->device_uptime }}</td> --}}
                                     {{-- <td>{{ $item->device_ip }}</td> --}}
                                     {{-- <td>{{ $item->device_subnet }}</td> --}}
@@ -250,7 +254,6 @@
                 <div class="row">
                     <label for="device_id">Device ID</label>
                     <input id="device_id" type="text" class="form-control mb-3" name="device_id" readonly>
-
                 </div>
                 <div class="row">
                     <label for="device_type">Device Type</label>
@@ -273,8 +276,19 @@
                 </div>
 
                 <div class="row">
+                    <label for="device_location">Device Image</label>
+                    {{-- <input id="device_location" type="text" class="form-control mb-3" name="device_location" readonly> --}}
+                </div>
+                <div class="row">
+                    <img id="device_image" src="" alt="">
+                </div>
+
+                <div class="row">
                     <label for="device_location">Device Location</label>
-                    <input id="device_location" type="text" class="form-control mb-3" name="device_location" readonly>
+                    {{-- <input id="device_location" type="text" class="form-control mb-3" name="device_location" readonly> --}}
+                </div>
+                <div class="row">
+                    <img id="device_location" src="" alt="">
                 </div>
 
                 <div class="row">

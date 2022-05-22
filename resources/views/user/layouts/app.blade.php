@@ -18,10 +18,13 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">ƒ
+    <link href="{{ asset('admin/css/print.css') }}" rel="stylesheet" media="print">
 
     {{-- DataTables --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/datatables.min.css') }}" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
 
     {{-- Custom Style --}}
     <style>
@@ -72,6 +75,7 @@
             text-decoration: none;
             cursor: pointer;
         }
+
         .modal-backdrop {
             z-index: -1;
         }
@@ -107,8 +111,10 @@
             modalDeviceLocation = document.getElementById('device_location');
             modalDeviceStatus = document.getElementById('device_status');
             modalDeviceHealth = document.getElementById('device_health');
-            modalDeviceIP = document.getElementById('device_ip');
             modalDeviceSubnet = document.getElementById('device_subnet');
+            modalDeviceIP = document.getElementById('device_ip');
+            modalImage = document.getElementById('device_image');
+
             // alert(modalDeviceStatus)
         }
     </script>
@@ -142,6 +148,8 @@
 
     {{-- DataTables --}}
     <script src="{{ asset('DataTables/datatables.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
@@ -157,6 +165,11 @@
     <script src="{{ asset('admin/js/demo/chart-pie-demo.js') }}"></script> --}}
     <script>
         $(document).ready(function() {
+
+            $("#usersTable").DataTable({
+                scrollX: true
+            });
+
             var span = document.getElementsByClassName("close")[0];
             // When the user clicks on <span> (x), close the modal
             span.onclick = function() {

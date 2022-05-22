@@ -11,11 +11,13 @@
         modalDeviceType.value = params[2];
         modalDeviceUnit.value = params[3];
         modalDeviceReading.value = params[4];
-        modalDeviceLocation.value = params[5];
+        modalDeviceLocation.src = "{{ URL::to('/') }}/firebase-temp-uploads/location/" + params[5];
         modalDeviceStatus.value = params[6];
         modalDeviceHealth.value = params[7];
         modalDeviceSubnet.value = params[8];
         modalDeviceIP.value = params[9];
+        modalDeviceImage.src = "{{ URL::to('/') }}/firebase-temp-uploads/" + params[10];
+
     }
 </script>
 <!-- Main Content -->
@@ -45,6 +47,9 @@
                             <th>Device Location</th>
                             <th>Device Status</th>
                             <th>Device Health</th>
+                            <th>Device IP</th>
+                            <th>Event ID</th>
+                            <th>Archive</th>
                             @if (Auth::user()->role === 'Admin')
                                 <th>Edit</th>
                                 <th>View more</th>
@@ -66,27 +71,31 @@
                                     <td>{{ $item->device_location }}</td>
                                     <td>{{ $item->device_status }}</td>
                                     <td>{{ $item->device_health }}</td>
+                                    <td>{{ $item->device_ip }}</td>
+                                    <td><a href="view_event/{{ $item->event_id }}">{{ $item->event_id }}</td>
+                                    <td><a onclick="return confirm('are you sure you want to archive this?')" class="btn btn-danger" href="archive/{{ $item->device_id }}">Archive</a></td>
                                     {{-- <td>{{ $item->device_uptime }}</td> --}}
                                     {{-- <td>{{ $item->device_ip }}</td> --}}
                                     {{-- <td>{{ $item->device_subnet }}</td> --}}
                                     @if (Auth::user()->role === 'Admin')
                                         <td><a class="btn btn-success btn-sm btn-block"
-                                                href="{{ route('updateDevice.admin', $item->id) }}">Edit</a></td>
+                                                href="{{ route('updateDevice.admin', $item->device_id) }}">Edit</a></td>
                                     @endif
                                     <td>
                                         <button data-id="{{ $item->device_id }}" class="btn btn-primary btn-sm btn-block"
                                             id={{ 'device' . $item->device_id }} onclick="popup_modal([
-                                                            '{{ $item->device_id }}',
-                                                            '{{ $item->device_name }}',
-                                                            '{{ $item->device_type }}',
-                                                            '{{ $item->device_unit }}',
-                                                            '{{ $item->device_reading }}',
-                                                            '{{ $item->device_location }}',
-                                                            '{{ $item->device_status }}',
-                                                            '{{ $item->device_health }}',
-                                                            '{{ $item->device_subnet }}',
-                                                            '{{ $item->device_ip }}',
-                                                            ])">
+                                                                    '{{ $item->device_id }}',
+                                                                    '{{ $item->device_name }}',
+                                                                    '{{ $item->device_type }}',
+                                                                    '{{ $item->device_unit }}',
+                                                                    '{{ $item->device_reading }}',
+                                                                    '{{ $item->device_location }}',
+                                                                    '{{ $item->device_status }}',
+                                                                    '{{ $item->device_health }}',
+                                                                    '{{ $item->device_subnet }}',
+                                                                    '{{ $item->device_ip }}',
+                                                                    '{{ $item->image }}',
+                                                                    ])">
                                             View more
                                         </button>
                                     </td>
@@ -106,19 +115,24 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
+                <span class="generate"><button class="btn btn-primary" onclick="generate_report()">Generate Device Report</button></span>
                 <div class="row">
                     <label for="device_id">Device ID</label>
                     <input id="device_id" type="text" class="form-control mb-3" name="device_id" readonly>
-
                 </div>
                 <div class="row">
                     <label for="device_type">Device Type</label>
                     <input id="device_type" type="text" class="form-control mb-3" name="device_type" readonly>
                 </div>
-
                 <div class="row">
                     <label for="device_name">Device Name</label>
                     <input id="device_name" type="text" class="form-control mb-3" name="device_name" readonly>
+                </div>
+
+                <div class="row">
+                    <label for="image">Device Image</label>
+                    {{-- <input id="image" type="text" class="form-control mb-3" name="image" readonly> --}}
+                    <img id="image" name="image" alt="">
                 </div>
 
                 <div class="row">
@@ -133,7 +147,8 @@
 
                 <div class="row">
                     <label for="device_location">Device Location</label>
-                    <input id="device_location" type="text" class="form-control mb-3" name="device_location" readonly>
+                    {{-- <input id="device_location" type="text" class="form-control mb-3" name="device_location" readonly> --}}
+                    <img id="device_location" name="device_location" alt="">
                 </div>
 
                 <div class="row">
@@ -153,6 +168,8 @@
                     <label for="device_subnet">Device Subnet</label>
                     <input id="device_subnet" type="text" class="form-control mb-3" name="device_subnet" readonly>
                 </div>
+
+
             </div>
         </div>
 
@@ -160,6 +177,14 @@
             function close_modal() {
                 var span = document.getElementsByClassName("close")[0];
                 modal.style.display = "none";
+            }
+
+            function generate_report(){
+                var span = document.getElementsByClassName("close")[0];
+                span.style.display = "none"
+                var generate = document.getElementsByClassName("generate")[0];
+                generate.style.display = "none"
+                window.print()
             }
 
             // window.onclick = function(event) {

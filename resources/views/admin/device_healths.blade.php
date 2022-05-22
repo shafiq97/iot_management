@@ -23,10 +23,10 @@
                 </div>
                 @endif
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">View Device Units</h1>
-                    <a href="{{ url('admin/device_unit') }}"
+                    <h1 class="h3 mb-0 text-gray-800">View Device Health</h1>
+                    <a href="{{ url('admin/device_health') }}"
                         class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-download fa-sm text-white-50"></i> Register Device Unit</a>
+                            class="fas fa-download fa-sm text-white-50"></i> Register Device Health</a>
                 </div>
 
                 <div class="table table-hover">
@@ -37,11 +37,11 @@
                             <th>Action</th>
                         </thead>
                         <tbody>
-                            @foreach ($device_units as $device_unit)
+                            @foreach ($device_healths as $device_health)
                                 <tr>
-                                    <td>{{ $device_unit->id }}</td>
-                                    <td>{{ $device_unit->device_unit }}</td>
-                                    <td><a onclick="return confirm('Are you sure you want to delete this device unit?')" href="delete_device_unit/{{ $device_unit->id }}" class="btn btn-danger">Delete</a></td>
+                                    <td>{{ $device_health->id }}</td>
+                                    <td>{{ $device_health->health }}</td>
+                                    <td><a onclick="return confirm('Are you sure you want to delete this device health?')" href="delete_device_health/{{ $device_health->id }}" class="btn btn-danger">Delete</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
