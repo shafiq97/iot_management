@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: center">
                         <div>
-                            <img src="https://www.uniten.edu.my/media/3236/logo-uniten.png" style="max-height: 30vh" alt="">
+                            <img src="https://play-lh.googleusercontent.com/U-T6XYeeMZS3TSWO1oc_mBcQzY4sXryqXS1gG8VdZGv0_NB7G3nKLXT-9IT-CJm0zgA" style="max-height: 30vh" alt="">
                         </div>
                     </div>
 

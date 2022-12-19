@@ -44,12 +44,14 @@
                             <th>Device Type</th>
                             <th>Device Unit</th>
                             <th>Device Reading</th>
+                            <th>Reading TimeStamp</th>
                             <th>Device Location</th>
                             <th>Device Status</th>
                             <th>Device Health</th>
                             <th>Device IP</th>
                             <th>Event ID</th>
                             <th>Archive</th>
+                            <th>View on Map</th>
                             @if (Auth::user()->role === 'Admin')
                                 <th>Edit</th>
                                 <th>View more</th>
@@ -68,12 +70,14 @@
                                     <td>{{ $item->device_type }}</td>
                                     <td>{{ $item->device_unit }}</td>
                                     <td>{{ $item->device_reading }}</td>
+                                    <td>{{ $item->reading_timestamp }}</td>
                                     <td>{{ $item->device_location }}</td>
                                     <td>{{ $item->device_status }}</td>
                                     <td>{{ $item->device_health }}</td>
                                     <td>{{ $item->device_ip }}</td>
                                     <td><a href="view_event/{{ $item->event_id }}">{{ $item->event_id }}</td>
                                     <td><a onclick="return confirm('are you sure you want to archive this?')" class="btn btn-danger" href="archive/{{ $item->device_id }}">Archive</a></td>
+                                    <td><a href="https://www.google.com/maps/search/?api=1&query=2.919742,101.654333" target="_blank" class="btn btn-warning">View on map</a></td>
                                     {{-- <td>{{ $item->device_uptime }}</td> --}}
                                     {{-- <td>{{ $item->device_ip }}</td> --}}
                                     {{-- <td>{{ $item->device_subnet }}</td> --}}

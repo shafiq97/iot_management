@@ -4,12 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Kreait\Firebase\Auth as FirebaseAuth;
-use Kreait\Firebase\Auth\SignInResult\SignInResult;
-use Kreait\Firebase\Exception\FirebaseException;
-use Google\Cloud\Firestore\FirestoreClient;
 use Kreait\Firebase\Factory;
-use Session;
+use GeoIP;
 
 class DevicesController extends Controller
 {
@@ -157,6 +153,14 @@ class DevicesController extends Controller
             'list' => DB::select('select * from event inner join devices on event.device_id = devices.device_id where archive = 0')
         );
 
+        // $location = geoip();
+        // $country = $location['country'];
+        // $city = $location['city'];
+        // $state = $location['state'];
+        // $lat = $location['lat'];
+        // $lng = $location['lon'];
+
+        // return view('admin.view_devices', $data)->with('lat', $lat)->with('lng', $lng);
         return view('admin.view_devices', $data);
     }
 
