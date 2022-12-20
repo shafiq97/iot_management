@@ -8,15 +8,7 @@
         modal.style.display = "block";
         modalMessage.value = params[0];
         modalDeviceName.value = params[1];
-        modalDeviceType.value = params[2];
-        modalDeviceUnit.value = params[3];
-        modalDeviceReading.value = params[4];
-        modalDeviceLocation.src = "{{ URL::to('/') }}/firebase-temp-uploads/location/" + params[5];
-        modalDeviceStatus.value = params[6];
-        modalDeviceHealth.value = params[7];
-        modalDeviceSubnet.value = params[8];
-        modalDeviceIP.value = params[9];
-        modalDeviceImage.src = "{{ URL::to('/') }}/firebase-temp-uploads/" + params[10];
+        modalDeviceLocation.value = params[2];
 
     }
 </script>
@@ -41,17 +33,18 @@
                         <thead>
                             <th>Device ID</th>
                             <th>Device Name</th>
-                            <th>Device Type</th>
-                            <th>Device Unit</th>
-                            <th>Device Reading</th>
+                            {{-- <th>Device Type</th> --}}
+                            {{-- <th>Device Unit</th> --}}
+                            {{-- <th>Device Reading</th> --}}
                             <th>Reading TimeStamp</th>
                             <th>Device Location</th>
-                            <th>Device Status</th>
-                            <th>Device Health</th>
-                            <th>Device IP</th>
+                            {{-- <th>Device Status</th> --}}
+                            {{-- <th>Device Health</th> --}}
+                            {{-- <th>Device IP</th> --}}
                             <th>Event ID</th>
                             <th>Archive</th>
                             <th>View on Map</th>
+                            <th>Report Lost</th>
                             @if (Auth::user()->role === 'Admin')
                                 <th>Edit</th>
                                 <th>View more</th>
@@ -67,17 +60,20 @@
                                 <tr>
                                     <td>{{ $item->device_id }}</td>
                                     <td>{{ $item->device_name }}</td>
-                                    <td>{{ $item->device_type }}</td>
-                                    <td>{{ $item->device_unit }}</td>
-                                    <td>{{ $item->device_reading }}</td>
+                                    {{-- <td>{{ $item->device_type }}</td> --}}
+                                    {{-- <td>{{ $item->device_unit }}</td> --}}
+                                    {{-- <td>{{ $item->device_reading }}</td> --}}
                                     <td>{{ $item->reading_timestamp }}</td>
                                     <td>{{ $item->device_location }}</td>
-                                    <td>{{ $item->device_status }}</td>
-                                    <td>{{ $item->device_health }}</td>
-                                    <td>{{ $item->device_ip }}</td>
-                                    <td><a href="view_event/{{ $item->event_id }}">{{ $item->event_id }}</td>
-                                    <td><a onclick="return confirm('are you sure you want to archive this?')" class="btn btn-danger" href="archive/{{ $item->device_id }}">Archive</a></td>
-                                    <td><a href="https://www.google.com/maps/search/?api=1&query=2.919742,101.654333" target="_blank" class="btn btn-warning">View on map</a></td>
+                                    {{-- <td>{{ $item->device_status }}</td> --}}
+                                    {{-- <td>{{ $item->device_health }}</td> --}}
+                                    {{-- <td>{{ $item->device_ip }}</td> --}}
+                                    <td><a href="view_event/{{ $item->event_id }}">{{ $item->event_id }}</a></td>
+                                    <td><a onclick="return confirm('are you sure you want to archive this?')"
+                                            class="btn btn-danger" href="archive/{{ $item->device_id }}">Archive</a></td>
+                                    <td><a id="demo" href="#" target="_blank" class="btn btn-warning">View on
+                                            map</a></td>
+                                    <td><a href="send_email" target="_blank" class="btn btn-dark">Report Lost</a></td>
                                     {{-- <td>{{ $item->device_uptime }}</td> --}}
                                     {{-- <td>{{ $item->device_ip }}</td> --}}
                                     {{-- <td>{{ $item->device_subnet }}</td> --}}
@@ -87,18 +83,11 @@
                                     @endif
                                     <td>
                                         <button data-id="{{ $item->device_id }}" class="btn btn-primary btn-sm btn-block"
-                                            id={{ 'device' . $item->device_id }} onclick="popup_modal([
+                                            id={{ 'device' . $item->device_id }}
+                                            onclick="popup_modal([
                                                                     '{{ $item->device_id }}',
                                                                     '{{ $item->device_name }}',
-                                                                    '{{ $item->device_type }}',
-                                                                    '{{ $item->device_unit }}',
-                                                                    '{{ $item->device_reading }}',
                                                                     '{{ $item->device_location }}',
-                                                                    '{{ $item->device_status }}',
-                                                                    '{{ $item->device_health }}',
-                                                                    '{{ $item->device_subnet }}',
-                                                                    '{{ $item->device_ip }}',
-                                                                    '{{ $item->image }}',
                                                                     ])">
                                             View more
                                         </button>
@@ -119,27 +108,28 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <span class="generate"><button class="btn btn-primary" onclick="generate_report()">Generate Device Report</button></span>
+                <span class="generate"><button class="btn btn-primary" onclick="generate_report()">Generate Device
+                        Report</button></span>
                 <div class="row">
                     <label for="device_id">Device ID</label>
                     <input id="device_id" type="text" class="form-control mb-3" name="device_id" readonly>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <label for="device_type">Device Type</label>
                     <input id="device_type" type="text" class="form-control mb-3" name="device_type" readonly>
-                </div>
+                </div> --}}
                 <div class="row">
                     <label for="device_name">Device Name</label>
                     <input id="device_name" type="text" class="form-control mb-3" name="device_name" readonly>
                 </div>
 
-                <div class="row">
+                {{-- <div class="row">
                     <label for="image">Device Image</label>
-                    {{-- <input id="image" type="text" class="form-control mb-3" name="image" readonly> --}}
+                    <input id="image" type="text" class="form-control mb-3" name="image" readonly>
                     <img id="image" name="image" alt="">
-                </div>
+                </div> --}}
 
-                <div class="row">
+                {{-- <div class="row">
                     <label for="device_unit">Device Unit</label>
                     <input id="device_unit" type="text" class="form-control mb-3" name="device_unit" readonly>
                 </div>
@@ -147,20 +137,20 @@
                 <div class="row">
                     <label for="device_reading">Device Reading</label>
                     <input id="device_reading" type="text" class="form-control mb-3" name="device_reading" readonly>
-                </div>
+                </div> --}}
 
                 <div class="row">
                     <label for="device_location">Device Location</label>
-                    {{-- <input id="device_location" type="text" class="form-control mb-3" name="device_location" readonly> --}}
+                    <input id="device_location" type="text" class="form-control mb-3" name="device_location" readonly>
                     <img id="device_location" name="device_location" alt="">
                 </div>
 
-                <div class="row">
+                {{-- <div class="row">
                     <label for="device_status">Device Status</label>
                     <input id="device_status" type="text" class="form-control mb-3" name="device_status" readonly>
-                </div>
+                </div> --}}
 
-                <div class="row">
+                {{-- <div class="row">
                     <label for="device_health">Device Health</label>
                     <input id="device_health" type="text" class="form-control mb-3" name="device_health" readonly>
                 </div>
@@ -171,7 +161,7 @@
                 <div class="row">
                     <label for="device_subnet">Device Subnet</label>
                     <input id="device_subnet" type="text" class="form-control mb-3" name="device_subnet" readonly>
-                </div>
+                </div> --}}
 
 
             </div>
@@ -183,13 +173,37 @@
                 modal.style.display = "none";
             }
 
-            function generate_report(){
+            function generate_report() {
                 var span = document.getElementsByClassName("close")[0];
                 span.style.display = "none"
                 var generate = document.getElementsByClassName("generate")[0];
                 generate.style.display = "none"
                 window.print()
             }
+
+
+            $(document).ready(function() {
+                var x = document.getElementById("demo");
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+
+
+                function showPosition(position) {
+                    var current = position.coords.latitude + position.coords.longitude
+                    if(localStorage.getItem("coord")== null){
+                        localStorage.setItem("coord", current);
+                    }
+                    else if(localStorage.getItem("coord") != current){
+                        alert("location change alert!");
+                    }
+                    x.href = "https://www.google.com/maps/search/?api=1&query=" +
+                        position.coords.latitude + "," + position.coords.longitude;
+                }
+            });
 
             // window.onclick = function(event) {
             //     if (event.target == modal) {

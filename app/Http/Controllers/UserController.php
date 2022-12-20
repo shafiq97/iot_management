@@ -1,19 +1,39 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    function index(){
+    function index()
+    {
+
         $data = array(
             'list' => DB::table('devices')->get()
         );
 
         return view('user.index', $data);
+    }
+
+    function send_email()
+    {
+        $data = array('name' => "User");
+
+        Mail::send(['text' => 'admin/mail'], $data, function ($message) {
+            $message->to('muhammadshafiq457@gmail.com', 'Device Lost')->subject('Potential Device Lost');
+            $message->from('muhammadshafiq457@gmail.com', 'PC Tracker Bot');
+        });
+        // echo "Basic Email Sent. Check your inbox.";
+
+        // return view('user.profile', $data);
+
+        return redirect("/admin/view_devices");
     }
 
 
@@ -40,10 +60,9 @@ class UserController extends Controller
         $email = $request->input('email');
         $name = $request->input('name');
 
-        $result = DB::update('update users set email = ?, name=? where id = ?',[$email,$name,$id]);
+        $result = DB::update('update users set email = ?, name=? where id = ?', [$email, $name, $id]);
 
         $user = DB::select('select * from users where id = "' . $id . '"');
         return view('user.profile')->with('user', $user)->with('result', $result);
-
     }
 }

@@ -43,23 +43,23 @@
                                     <input id="device_name" type="text" class="form-control mb-3" name="device_name"
                                         required>
                                 </div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div>
                                         <label for="location_image">Location Image</label>
                                     </div>
                                     <input id="location_image" type="file" class="form-control-file mb-3"
                                         name="location_image" required>
-                                    {{-- <img id="location" src="#" alt="your image" style="display: none; position:relative" /> --}}
-                                </div>
+                                    <img id="location" src="#" alt="your image" style="display: none; position:relative" />
+                                </div> --}}
 
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div>
                                         <img id="zoom-marker-img" class="zoom-marker-img" id="zoom-marker-img-alt"
                                             alt="zoom-marker-img-alt" name="zoom-marker-img-alt" draggable="false" />
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="row mb-3">
+                                {{-- <div class="row mb-3">
                                     <div class="zoom-marker-navigator mr-3">
                                         <button type="button" id="zoom-marker-btn-clean" class="btn btn-warning">clean
                                             marker</button>
@@ -68,14 +68,14 @@
                                         <button type="button" id="save_location_image" class="btn btn-success">Save
                                             Image</button>
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="row">
+                                {{-- <div class="row">
                                     <label for="device_image">Device Image</label>
                                     <input id="device_image" type="file" class="form-control-file mb-3" name="device_image"
                                         required>
-                                </div>
-                                <div class="row">
+                                </div> --}}
+                                {{-- <div class="row">
                                     <div class="col pr-1 pl-0">
                                         <label for="device_type">Device Type</label>
                                         <select name="device_type" id="" class="form-control mb-3" required>
@@ -84,15 +84,15 @@
                                                     {{ $device_type->device_type }}</option>
                                             @endforeach
                                         </select>
-                                        {{-- <input id="device_type" type="text" class="form-control mb-3" name="device_type"> --}}
+                                        <input id="device_type" type="text" class="form-control mb-3" name="device_type">
                                     </div>
                                     <div class="col p-0">
                                         <label for="device_uptime">Device Initial Uptime</label>
                                         <input id="device_uptime" type="text" class="form-control mb-3" name="device_uptime"
                                             required>
                                     </div>
-                                </div>
-                                <div class="row">
+                                </div> --}}
+                                {{-- <div class="row">
                                     <div class="col pr-1 pl-0">
                                         <label for="device_subnet">Device Subnet</label>
                                         <input id="device_subnet" type="text" class="form-control mb-3" name="device_subnet"
@@ -103,8 +103,8 @@
                                         <input id="device_ip" type="text" class="form-control mb-3" name="device_ip"
                                             required>
                                     </div>
-                                </div>
-                                <div class="row">
+                                </div> --}}
+                                {{-- <div class="row">
                                     <div class="col pr-1 pl-0">
                                         <label for="device_reading">Device Initial Reading</label>
                                         <input id="device_reading" type="text" class="form-control mb-3"
@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="col p-0">
                                         <label for="device_unit">Device Unit</label>
-                                        {{-- <input id="device_unit" type="text" class="form-control mb-3" name="device_unit"> --}}
+                                        <input id="device_unit" type="text" class="form-control mb-3" name="device_unit">
                                         <select name="device_unit" id="device_unit" class="form-control mb-3">
                                             @foreach ($device_units as $device_unit)
                                                 <option value="{{ $device_unit->device_unit }}">
@@ -120,8 +120,8 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
-                                <div class="row">
+                                </div> --}}
+                                {{-- <div class="row">
                                     <div class="col pr-1 pl-0">
                                         <label for="device_status">Device Status</label>
                                         <input id="device_status" type="text" class="form-control mb-3" name="device_status"
@@ -129,8 +129,8 @@
                                     </div>
                                     <div class="col p-0">
                                         <label for="device_health">Device Health</label>
-                                        {{-- <input id="device_health" type="text" class="form-control mb-3" name="device_health"
-                                            required> --}}
+                                        <input id="device_health" type="text" class="form-control mb-3" name="device_health"
+                                            required>
                                         <select name="device_health" id="device_health" class="form-control mb-3">
                                             @foreach ($device_healths as $device_health)
                                                 <option value="{{ $device_health->health }}">
@@ -138,7 +138,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row">
                                     <label for="device_location">Building name</label>
                                     <input id="device_location" type="text" class="form-control mb-3"

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Device Tracker'),
+    'name' => env('APP_NAME', 'PC Tracker'),
 
     /*
     |--------------------------------------------------------------------------

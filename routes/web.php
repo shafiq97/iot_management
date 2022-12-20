@@ -45,6 +45,7 @@ Route::post('admin/edit_device', [DevicesController::class, 'edit_device']);
 Route::post('admin/edit_event', [EventController::class, 'edit_event']);
 Route::get('admin/view_device/{id}', [DevicesController::class, 'edit_devices'])->name('updateDevice.admin');
 Route::get('admin/view_event/{id}', [EventController::class, 'edit_events'])->name('updateEvent.admin');
+Route::get('admin/send_email', [UserController::class, 'send_email']);
 Route::get('admin/view_devices', [DevicesController::class, 'view_devices']);
 Route::get('admin/view_events', [EventController::class, 'view_events']);
 Route::get('view_devices', [UserController::class, 'view_devices']);

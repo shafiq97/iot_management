@@ -81,7 +81,7 @@
         <div class="row justify-content-center">
             <div class="col-3 text-center">
                 <div class="loader">
-                    Device Tracker
+                    PC Tracker
                 </div>
             </div>
         </div>

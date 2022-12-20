@@ -1,4 +1,5 @@
 @extends('user.layouts.app')
+<script src="{{ asset('js/app.js') }}"></script>
 <script>
     function popup_modal(params) {
         var btn = document.getElementById(params[0]);
@@ -19,6 +20,28 @@
 
         console.log('params 10' + params[10]);
     }
+
+    $(document).ready(function() {
+        var x = document.getElementById("demo");
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+
+
+        function showPosition(position) {
+            var current = position.coords.latitude + position.coords.longitude
+            if (localStorage.getItem("coord") == null) {
+                localStorage.setItem("coord", current);
+            } else if (localStorage.getItem("coord") != current) {
+                alert("location change alert!");
+            }
+            x.href = "https://www.google.com/maps/search/?api=1&query=" +
+                position.coords.latitude + "," + position.coords.longitude;
+        }
+    });
 </script>
 <!-- Main Content -->
 @section('content')
@@ -44,13 +67,16 @@
                         <thead>
                             <th>Device ID</th>
                             <th>Device Name</th>
-                            <th>Device Type</th>
-                            <th>Device Unit</th>
+                            {{-- <th>Device Type</th> --}}
+                            {{-- <th>Device Unit</th> --}}
                             <th>Device Reading</th>
                             <th>Device Location</th>
                             <th>Device Status</th>
-                            <th>Device Health</th>
-                            <th>Device Health</th>
+                            {{-- <th>View</th> --}}
+                            <th>View on map</th>
+                            {{-- <th>Device Status</th> --}}
+                            {{-- <th>Device Health</th> --}}
+                            {{-- <th>Device Health</th> --}}
                             {{-- <th>Device Uptime</th> --}}
                             {{-- <th>Device IP</th> --}}
                             {{-- <th>Device Subnet</th> --}}
@@ -60,14 +86,15 @@
                                 <tr>
                                     <td>{{ $item->device_id }}</td>
                                     <td>{{ $item->device_name }}</td>
-                                    <td>{{ $item->device_type }}</td>
-                                    <td>{{ $item->device_unit }}</td>
+                                    {{-- <td>{{ $item->device_type }}</td> --}}
+                                    {{-- <td>{{ $item->device_unit }}</td> --}}
                                     <td>{{ $item->device_reading }}</td>
                                     <td>{{ $item->device_location }}</td>
                                     <td>{{ $item->device_status }}</td>
-                                    <td>{{ $item->device_health }}</td>
-                                    <td> <button data-id="{{ $item->device_id }}" class="btn btn-primary btn-sm btn-block"
-                                            id={{ 'device' . $item->device_id }} onclick="popup_modal([
+                                    {{-- <td>{{ $item->device_health }}</td> --}}
+                                    {{-- <td> <button data-id="{{ $item->device_id }}" class="btn btn-primary btn-sm btn-block"
+                                            id={{ 'device' . $item->device_id }}
+                                            onclick="popup_modal([
                                                             '{{ $item->device_id }}',
                                                             '{{ $item->device_name }}',
                                                             '{{ $item->device_type }}',
@@ -81,7 +108,9 @@
                                                             '{{ $item->image }}',
                                                             ])">
                                             View more
-                                        </button></td>
+                                        </button></td> --}}
+                                    <td><a id="demo" href="#" target="_blank" class="btn btn-warning">View on
+                                            map</a></td>
                                     {{-- <td>{{ $item->device_uptime }}</td> --}}
                                     {{-- <td>{{ $item->device_ip }}</td> --}}
                                     {{-- <td>{{ $item->device_subnet }}</td> --}}

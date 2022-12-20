@@ -52,7 +52,8 @@
                                         value="{{ $device[0]->image }}"> --}}
                                 </div>
                                 <div class="row">
-                                    <img id="location" src="{{ URL::to('/') }}/firebase-temp-uploads/{{ $device[0]->image }}"
+                                    <img id="location"
+                                        src="{{ URL::to('/') }}/firebase-temp-uploads/{{ $device[0]->image }}"
                                         alt="">
                                 </div>
                                 <div class="row">
@@ -62,7 +63,8 @@
                                         value="{{ $device[0]->image }}"> --}}
                                 </div>
                                 <div class="row">
-                                    <img id="location" src="{{ URL::to('/') }}/firebase-temp-uploads/location/{{ $device[0]->device_location }}"
+                                    <img id="location"
+                                        src="{{ URL::to('/') }}/firebase-temp-uploads/location/{{ $device[0]->device_location }}"
                                         alt="">
                                 </div>
                                 <div class="row mt-5">
@@ -73,15 +75,15 @@
                                     </div>
                                     <div class="col p-0">
                                         <label for="device_uptime">Device Initial Uptime</label>
-                                        <input id="device_uptime" type="text" class="form-control mb-3" name="device_uptime"
-                                            value="{{ $device[0]->device_uptime }}" required>
+                                        <input id="device_uptime" type="text" class="form-control mb-3"
+                                            name="device_uptime" value="{{ $device[0]->device_uptime }}" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col pr-1 pl-0">
                                         <label for="device_subnet">Device Subnet</label>
-                                        <input id="device_subnet" type="text" class="form-control mb-3" name="device_subnet"
-                                            value="{{ $device[0]->device_subnet }}">
+                                        <input id="device_subnet" type="text" class="form-control mb-3"
+                                            name="device_subnet" value="{{ $device[0]->device_subnet }}">
                                     </div>
                                     <div class="col p-0">
                                         <label for="device_ip">Device IP</label>
@@ -104,25 +106,25 @@
                                 <div class="row">
                                     <div class="col pr-1 pl-0">
                                         <label for="device_status">Device Status</label>
-                                        <input id="device_status" type="text" class="form-control mb-3" name="device_status"
-                                            value="{{ $device[0]->device_status }}">
+                                        <input id="device_status" type="text" class="form-control mb-3"
+                                            name="device_status" value="{{ $device[0]->device_status }}">
                                     </div>
                                     <div class="col p-0">
                                         <label for="device_health">Device Health</label>
-                                        <input id="device_health" type="text" class="form-control mb-3" name="device_health"
-                                            value="{{ $device[0]->device_health }}">
+                                        <input id="device_health" type="text" class="form-control mb-3"
+                                            name="device_health" value="{{ $device[0]->device_health }}">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label for="device_location">Building name</label>
-                                    <input id="device_location" type="text" class="form-control mb-3" name="device_location"
-                                        value="{{ $device[0]->device_location }}">
+                                    <input id="device_location" type="text" class="form-control mb-3"
+                                        name="device_location" value="{{ $device[0]->device_location }}">
                                 </div>
                                 <div class="row">
                                     <div class="col pr-1 pl-0">
                                         <label for="floor_level">Floor level</label>
-                                        <input id="floor_level" type="text" class="form-control mb-3" name="floor_level"
-                                            value="{{ $device[0]->floor_level }}">
+                                        <input id="floor_level" type="text" class="form-control mb-3"
+                                            name="floor_level" value="{{ $device[0]->floor_level }}">
                                     </div>
                                     <div class="col pr-1 pl-0">
                                         <label for="window_id">Window Id</label>
@@ -149,12 +151,14 @@
         </div>
         <!-- End of Main Content -->
 
-        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
         <script>
             $('#location').click(function(e) {
-                $('#marker').css('left', e.pageX-300).css('top', e.pageY-150).show();
+                $('#marker').css('left', e.pageX - 300).css('top', e.pageY - 150).show();
                 // Position of the marker is now e.pageX, e.pageY
                 // ... which corresponds to where the click was.
             });
+
         </script>
     @endsection

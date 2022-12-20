@@ -150,7 +150,7 @@ class DevicesController extends Controller
     function view_devices()
     {
         $data = array(
-            'list' => DB::select('select * from event inner join devices on event.device_id = devices.device_id where archive = 0')
+            'list' => DB::select('select * from event inner join devices on event.device_id = devices.device_id where devices.archive = 0')
         );
 
         // $location = geoip();
@@ -226,8 +226,8 @@ class DevicesController extends Controller
             "device_subnet" => $request->input('device_subnet'),
             "user_id" => $request->input('user_id'),
             "device_name" => $request->input('device_name'),
-            "image" => $request->file('device_image')->getClientOriginalName(),
-            "device_location" => $request->file('location_image')->getClientOriginalName(),
+            // "image" => $request->file('device_image')->getClientOriginalName(),
+            // "device_location" => $request->file('location_image')->getClientOriginalName(),
             "created_at" => date('Y-m-d'),
             "updated_at" => date('Y-m-d')
         ]);
@@ -241,17 +241,17 @@ class DevicesController extends Controller
 
             $localfolder = public_path('firebase-temp-uploads') . '/';
             $localfolder2 = public_path('firebase-temp-uploads') . '/location/';
-            $extension = $image->getClientOriginalExtension();
-            $file = $request->file('device_image')->getClientOriginalName();
-            $file2 = $request->file('location_image')->getClientOriginalName();
-            $image->move($localfolder, $file);
-            $location_image->move($localfolder2, $file2);
-            $uploadedfile = fopen($localfolder . $file, 'r');
-            $uploadedfile2 = fopen($localfolder2 . $file2, 'r');
-            $firebase_storage_path = 'Images/';
-            $firebase_storage_path2 = 'Locations/';
-            $storage->getBucket()->upload($uploadedfile, ['name' => $firebase_storage_path . $request->file('device_image')->getClientOriginalName()]);
-            $storage->getBucket()->upload($uploadedfile2, ['name' => $firebase_storage_path2 . $request->file('location_image')->getClientOriginalName()]);
+            // $extension = $image->getClientOriginalExtension();
+            // $file = $request->file('device_image')->getClientOriginalName();
+            // $file2 = $request->file('location_image')->getClientOriginalName();
+            // $image->move($localfolder, $file);
+            // $location_image->move($localfolder2, $file2);
+            // $uploadedfile = fopen($localfolder . $file, 'r');
+            // $uploadedfile2 = fopen($localfolder2 . $file2, 'r');
+            // $firebase_storage_path = 'Images/';
+            // $firebase_storage_path2 = 'Locations/';
+            // $storage->getBucket()->upload($uploadedfile, ['name' => $firebase_storage_path . $request->file('device_image')->getClientOriginalName()]);
+            // $storage->getBucket()->upload($uploadedfile2, ['name' => $firebase_storage_path2 . $request->file('location_image')->getClientOriginalName()]);
             // unlink($localfolder . $file);
             return back()->with('success', 'Record has been successfully inserted');
         } else {
